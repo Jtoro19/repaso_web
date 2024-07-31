@@ -14,7 +14,8 @@ class BooksController extends Controller
      */
     public function index()
     {
-        //
+        $books = Book::all();
+        return view('principal', ['books' => $books]);
     }
 
     /**
@@ -24,7 +25,7 @@ class BooksController extends Controller
      */
     public function create()
     {
-        //
+        return view('books');
     }
 
     /**
@@ -73,7 +74,7 @@ class BooksController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        
     }
 
     /**
@@ -84,6 +85,8 @@ class BooksController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $book = Book::find($id);
+        $book->delete();
+        return redirect()->route('books.index');
     }
 }
